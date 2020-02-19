@@ -28,15 +28,17 @@ function fetchData(search = 'cats') {
 
 function handleData(json) {
   const data = json.data
-  let htmlStr = ''
+  let htmlStr = 'container'
   for (let i = 0; i < data.length; i += 1) {
     const image = data[i].images.fixed_height_small
     const src = image.url
     const width = image.width
     const height = image.height
     htmlStr += `<img src="${src}" width="${width}" height="${height}">`
+
   }
 
   // Set the innHTML of #container
   container.innerHTML = htmlStr
+
 }
