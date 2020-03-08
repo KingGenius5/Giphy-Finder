@@ -1,34 +1,41 @@
 const searchForm = document.getElementById('search-form')
-
-searchForm.addEventListener('submit', submitSearch)
+const inputSearch = document.getElementById('input-search')
 const container = document.getElementById('container')
 
-function submitSearch(e) {
-  // The form was submitted!
-}
-
+searchForm.addEventListener('submit', submitSearch)
 
 function submitSearch(e) {
-  // Get the value input in the search input
+  e.preventDefault()
   const query = inputSearch.value
-
+  fetchData(query)
 }
-
 
 function fetchData(search = 'cats') {
   const api = 'VvMbcgq39wsajqj1whGnvnrVhJGC423X'
-  const path = `https://api.giphy.com/v1/gifs/search?api_key=${api}&q=${search}
+  const path = `https://api.giphy.com/v1/gifs/search?api_key=${api}&q=${search}`
 
   fetch(path)
-  .then(function(res) { return res.json() })
-  .then(function(json) { handleData(json) })
-  .catch(function(err) { console.log(err.message) })
+    .then(function(res) {
+      return res.json()
+    })
+    .then(function(json) {
+      handleData(json)
+    })
+    .catch(function(err) {
+      console.log(err.message)
+    })
+
+}
+
+function handleData(json) {
+  console.log(json)
 
 }
 
 function handleData(json) {
   const data = json.data
-  let htmlStr = 'container'
+  let htmlStr = ''
+
   for (let i = 0; i < data.length; i += 1) {
     const image = data[i].images.fixed_height_small
     const src = image.url
@@ -38,7 +45,7 @@ function handleData(json) {
 
   }
 
-  // Set the innHTML of #container
+
   container.innerHTML = htmlStr
 
 }
