@@ -1,1 +1,5 @@
-[Giphy-Finder Link](https://kinggenius5.github.io/Giphy-Finder/)
+# Giphy Finder
+
+[Live Link](https://kinggenius5.github.io/Giphy-Finder/)
+
+A JavaScript application that loads gifs.
